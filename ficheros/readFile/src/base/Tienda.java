@@ -17,7 +17,7 @@ public class Tienda extends menu{
           
     }
     
-    public static void loginFile(){
+    public  static void loginFile(){
          Scanner leerTeclado = new Scanner(System.in);
             
             System.out.println("-----------------------------------------");

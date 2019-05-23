@@ -14,16 +14,18 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import util.Color;
 
 
 
-public class menu 
-{
+public  class menu {
+   
+    
     public static void main(String[] args) {
         InputMenu();
         
     }
-    
+   
     
     public static void InputMenu(){
 	
@@ -69,50 +71,84 @@ public class menu
         System.out.println("Selection: ");
     }
     
-    public static void opcion1(){
-        //hacer un pedido1
-	System.out.println("--------------------------");
-        System.out.println("--------------------------");
-        System.out.println("Menu pedido:");
-	System.out.println(" 1.1 Añadir producto a la cesta\n"
-                         + " 1.2 Visualizar precio total de la cesta\n"
-                         + " 1.3 Imprimir factura\n"
-                         + " 1.4 Terminar pedido");
-        System.out.println("--------------------------");
-        System.out.println("Selection: ");
-        carro tienda = new carro();
-	Scanner q = new Scanner(System.in);
-       
-	switch (q.nextInt()) 
-	{
-	    case 1:
-	    System.out.println ("");
-            leerArchivo();
-            tienda.addItem();
-            opcion1();
-	    break;
-  
-	    case 2:
-	    System.out.println ("");
-            leerArchivo();
-            tienda.precioTotal();
-            opcion1();
-            break;
-            
-            case 3:
-                    
-	    System.out.println ("");
-	    break;
-            
-            case 4:
-	    System.out.println ("");
-            InputMenu();
-	    break;
-            
-	    default:
-	    System.err.println ( "Unrecognized option" );
-	    break;
-	}
+    public  static void opcion1(){
+        // TODO Auto-generated method stub
+		ArrayList<carro> shoppingCart = new ArrayList<carro>();
+		Scanner scan = new Scanner(System.in);
+		ArrayList<Integer> intList = new ArrayList<Integer>();
+		boolean keepGoing = true;
+		int option = 0;
+		//int input = 0;
+		int index=0;
+		int total = 0;
+                String salidaNombre;
+		Integer item;
+ 
+		while(keepGoing){
+                        System.out.println("--------------------------");
+			System.out.println("Menu de pedido");
+			System.out.println(" 1.1 Añadir producto a la cesta");//yes
+			
+			System.out.println(" 1.2 Visualizar precio total cesta");
+			System.out.println(" 1.3 Precios en la cesta ");//yes
+			System.out.println(" 1.5 Imprimir factura");
+			System.out.println(" 1.4 Terminar pedido");
+                        System.out.println("--------------------------");
+			System.out.println(Color.CONFIRM + "Select option --> " + Color.DEFAULT);
+			option = scan.nextInt();
+			if (option <1 || option >5)
+			{
+				System.out.println("Escoge valor entre 1 y el 4");
+			}
+			else
+			{
+				switch (option)
+				{
+				case 1:
+                                        leerArchivo();
+                                        //System.out.println("Introduce el nombre del producto que desea -->");
+                                        //salidaNombre = scan.nextLine();
+					//introducir precio producto
+					System.out.println("Introduce precio del producto");
+                                        System.out.println("--> ");
+					double input = scan.nextDouble();
+                                        int valor = (int)input;
+					item =valor;
+					intList.add(item);
+					
+					break;
+                                       
+				case 2:
+					//Total cesta
+					for (int i = 0; i<intList.size(); i++)
+					{
+						item = intList.get(i);
+						total = total + item.intValue();
+					}
+					System.out.println("El valor total de la cesta es "+ total);
+					
+					break;
+				case 3:
+					
+					System.out.println(intList);
+					break;
+                                        
+				case 4:
+					//exit
+					keepGoing = false;
+					System.out.println("Gracias por la compra");
+					break;
+                                        
+                                case 5:
+					System.out.println("El primero es " + intList.get(0));
+                                        System.out.println("El segundo es " + intList.get(1));
+                                        
+					
+					break;        
+				}
+			}
+		}
+                InputMenu();
     }
     public static void opcion2(){
         //modificar producto
@@ -169,7 +205,7 @@ public class menu
        // List<Producto> productos = new ArrayList<>();
         try(BufferedReader archivo = Files.newBufferedReader(path))
         {
-            System.out.println("#     Codigo    Nombre                        Precio");
+            System.out.println("Codigo    Nombre                        Precio");
             while(archivo.readLine() != null)
             {
                 
@@ -198,11 +234,13 @@ public class menu
                 numero = formatoNumero.parse(lineaDato);
                 double precio = numero.doubleValue();
                 //System.out.print(precio+ "");
-                System.out.println("       " + codigo + "       " + nombre  + "       " +precio);
+                System.out.println("" + codigo + "       " + nombre  + "       " +precio);
+                
                 
                 //Añadir producto
                 //productos.add(new Producto(codigo, nombre, descripcion, precio));
             }
+            System.out.println("");
         }
         catch (ParseException ex)
         {
