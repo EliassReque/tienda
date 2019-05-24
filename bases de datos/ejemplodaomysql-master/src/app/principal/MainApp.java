@@ -8,7 +8,7 @@ public class MainApp {
 
         GestionTienda gestionTienda = new GestionTienda();
         gestionTienda.iniciar();
-
+        //Agrandar el output del programa para ver todo claro
     }
 
 }
