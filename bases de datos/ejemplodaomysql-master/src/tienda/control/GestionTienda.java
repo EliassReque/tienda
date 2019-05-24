@@ -120,8 +120,9 @@ public class GestionTienda {
 					for (int i = 0; i<intList.size(); i++)
 					{
 						item = intList.get(i);
-						total = total + item.intValue();
+						total = total + item;
 					}
+                                        
 					System.out.println("El valor total de la cesta es "+ total + "$");
 					hacerPedido();
 					break;
@@ -134,7 +135,10 @@ public class GestionTienda {
 				case 4:
 					//exit
 					keepGoing = false;
-					System.out.println("Gracias por la compra");
+                                        codigoProducto.removeAll(codigoProducto);
+                                         descripcionProducto.removeAll(descripcionProducto);
+                                          intList.removeAll(intList);
+                    			System.out.println("Gracias por la compra");
 					break;
                                         
                                 case 5:

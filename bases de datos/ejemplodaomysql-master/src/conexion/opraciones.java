@@ -72,11 +72,11 @@ public class opraciones {
                 String nombre = resultadoNombre.getString("p_nombre");
                 
                 //String apellidos = resultadoNombre.getString("p_descripcion");
-                String password = resultadoNombre.getString("p_precio");
+                String prize = resultadoNombre.getString("p_precio");
                 //System.out.printf(" %s",  nombre);
                 //listaNombre.add(nombre);
                 
-                System.out.println(codigo +"        "+ nombre +"            "+ password);
+                System.out.println(codigo +"        "+ nombre +"            "+ prize);
             }
             /*
             ResultSet resultadoApellidos = sentencia.executeQuery("SELECT * FROM apellidos");
