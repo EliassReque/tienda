@@ -73,9 +73,10 @@ public  class menu {
     
     public  static void opcion1(){
         // TODO Auto-generated method stub
-		ArrayList<carro> shoppingCart = new ArrayList<carro>();
-		Scanner scan = new Scanner(System.in);
+		ArrayList<Integer> codigoProducto = new ArrayList<Integer>();
+		ArrayList<String> descripcionProducto = new ArrayList<String>();
 		ArrayList<Integer> intList = new ArrayList<Integer>();
+                Scanner scan = new Scanner(System.in);
 		boolean keepGoing = true;
 		int option = 0;
 		//int input = 0;
@@ -109,14 +110,24 @@ public  class menu {
                                         //System.out.println("Introduce el nombre del producto que desea -->");
                                         //salidaNombre = scan.nextLine();
 					//introducir precio producto
+                                        System.out.println("Introduce codigo del producto ");
+                                        System.out.print("--> ");
+                                        int codigo = scan.nextInt();
+                                        codigoProducto.add(codigo);
+                                        
+                                        System.out.println("Introduce nombre del producto");
+                                        System.out.print("--> ");
+                                        String nameProduct;
+                                         nameProduct = scan.next();
+                                        descripcionProducto.add(nameProduct);
+                                        
 					System.out.println("Introduce precio del producto");
-                                        System.out.println("--> ");
+                                        System.out.print("--> ");
 					double input = scan.nextDouble();
                                         int valor = (int)input;
 					item =valor;
 					intList.add(item);
-					
-					break;
+                                        break;
                                        
 				case 2:
 					//Total cesta
@@ -125,7 +136,7 @@ public  class menu {
 						item = intList.get(i);
 						total = total + item.intValue();
 					}
-					System.out.println("El valor total de la cesta es "+ total);
+					System.out.println("El valor total de la cesta es "+ total + "$");
 					
 					break;
 				case 3:
@@ -140,10 +151,17 @@ public  class menu {
 					break;
                                         
                                 case 5:
-					System.out.println("El primero es " + intList.get(0));
-                                        System.out.println("El segundo es " + intList.get(1));
-                                        
-					
+                                        System.out.println("Factura simplificada:");
+                                        System.out.println("-------------------------------------------------------------");
+					for (int i = 0; i<intList.size(); i++)
+					{//+ " " + descripcionProducto.get(i)+ " " + intList.get(i));
+					    
+                                            System.out.println("Código:"+ "    " +codigoProducto.get(i));
+                                            System.out.println("Descripción:"+ " " +descripcionProducto.get(i));
+                                            System.out.println("Precio:"+ "    " +intList.get(i));
+                                            System.out.println(" ");
+					}
+                                        System.out.println("-------------------------------------------------------------");
 					break;        
 				}
 			}
